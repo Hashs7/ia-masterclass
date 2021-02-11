@@ -15,6 +15,7 @@ class PerceptronMulti {
 
     predict(inputs: number[]): number {
         this.inputs = inputs;
+        this.sop = 0;
         inputs.forEach((inp, index) => {
             this.sop += inp * this.weights[index];
         });
@@ -43,6 +44,16 @@ class PerceptronMulti {
         for (let i = 0; i < this.inputs.length; i++) {
             // @ts-ignore
             this.gradients.push(this.inputs[i] * delta);
+        }
+    }
+
+    /**
+     *
+     * @param lr: learning rate
+     */
+    updateWeights(lr: number) {
+        for (let i = 0; i < this.weights.length; i++) {
+            this.weights[i] -= this.gradients[i] * lr;
         }
     }
 }
