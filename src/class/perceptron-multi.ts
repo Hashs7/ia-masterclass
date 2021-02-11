@@ -2,6 +2,7 @@ class PerceptronMulti {
     bias: number;
     act: number = 0;
     sop: number = 0;
+    gradients: number[] | [] = [];
     weights: number[] | [] = [];
     inputs: number[] | [] = [];
 
@@ -28,6 +29,21 @@ class PerceptronMulti {
      */
     activate(x: number): number {
         return Math.max(0, x);
+    }
+
+    /**
+     * Dérivé de la fonction d'activation
+     */
+    dActrivate(): number {
+        return this.sop > 0 ? 1 : 0
+    }
+
+    getGradient(delta: number) {
+        this.gradients = [];
+        for (let i = 0; i < this.inputs.length; i++) {
+            // @ts-ignore
+            this.gradients.push(this.inputs[i] * delta);
+        }
     }
 }
 

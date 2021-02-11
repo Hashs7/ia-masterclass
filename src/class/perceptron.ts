@@ -36,7 +36,7 @@ class Perceptron {
         });
     }
 
-    calcError(output: number, expected: number) {
+    calcError(output: number, expected: number): number {
         return expected - output;
     }
 }
